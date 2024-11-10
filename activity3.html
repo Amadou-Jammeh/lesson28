@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activity3</title>
-</head>
-<body>
-    <h2>Arrow functions</h2>
-    <p id="p1"></p>
-    <p id="p2"></p>
+    <title>Error Handling project</title>
     <script>
-        var sum=function add(a,b){
-            return a+b;
-        }
-        //arrow function
-        var sum1=(a,b,c)=>a+b+c;
+        function checkNumber() {
+            let input = document.getElementById('numberInput').value;
+            let message = document.getElementById('errorMessage');
+            message.innerHTML = ""; // Clear any previous messages
 
-        document.getElementById("p1").innerHTML=sum(10,20);
-        document.getElementById("p1").innerHTML=sum1(2,5,8,);
-        
-        
+            try {
+                if (isNaN(input) || input === "") {
+                    throw "This is not a number!";
+                }
+                if (input < 1) {
+                    throw "The number must be greater than 0!";
+                }
+                alert("Success! The number is valid.");
+            } catch (err) {
+                message.innerHTML = "Error: " + err;
+            }
+        }
     </script>
+</head>
+
+<body>
+    <h1>Number Validator</h1>
+    <p>Enter a number and click the button to validate it:</p>
+    <input type="text" id="numberInput">
+    <button onclick="checkNumber()">Check Number</button>
+    <p id="errorMessage" style="color: red;"></p>
 </body>
+
 </html>
